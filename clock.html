@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="clock.css">
+</head>
+<body>
+  <div class="clock-container">
+    <div class="hour" ></div>
+    <div class="minute" ></div>
+    <div class="second" ></div>
+    <div class="mark" style="transform: rotate(30deg);"> <div class="numer"  style="transform: rotate(-30deg);">1</div> </div>
+    <div class="mark" style="transform: rotate(60deg);"> <div class="numer"  style="transform: rotate(-60deg);" >2</div> </div>
+    <div class="mark" style="transform: rotate(90deg);"> <div class="numer"  style="transform: rotate(-90deg);">3</div> </div>
+    <div class="mark" style="transform: rotate(120deg);"> <div class="numer" style="transform: rotate(-120deg);">4</div> </div>
+    <div class="mark" style="transform: rotate(150deg);"> <div class="numer" style="transform: rotate(-150deg);">5</div> </div>
+    <div class="mark" style="transform: rotate(180deg);"> <div class="numer" style="transform: rotate(-180deg);">6</div> </div>
+    <div class="mark" style="transform: rotate(210deg);"> <div class="numer" style="transform: rotate(-210deg);">7</div> </div>
+    <div class="mark" style="transform: rotate(240deg);"> <div class="numer" style="transform: rotate(-240deg);">8</div> </div>
+    <div class="mark" style="transform: rotate(270deg);"> <div class="numer" style="transform: rotate(-270deg);">9</div> </div>
+    <div class="mark" style="transform: rotate(300deg);"> <div class="numer" style="transform: rotate(-300deg);">10</div> </div>
+    <div class="mark" style="transform: rotate(330deg);"> <div class="numer" style="transform: rotate(-330deg);">11</div> </div>
+    <div class="mark"> <div class="numer">12</div> </div>
+  </div>
+
+  <script>
+
+    let secondturn = 0;
+    function compute(){
+      let d = new Date();
+      let hour = d.getHours() % 12;
+      let minute = d.getMinutes();
+      let second = d.getSeconds();
+      let secondDeg = second/60;
+      if(secondDeg === 0){
+        secondturn++;
+      }
+      const minuteDeg = (minute + second/60)/60;
+      const hourDeg = (hour+minute/60 + second/3600)/12;
+      document.getElementsByClassName("hour")[0].style.transform =  `rotate(${hourDeg}turn)`;
+      document.getElementsByClassName("minute")[0].style.transform =  `rotate(${minuteDeg}turn)`;
+      document.getElementsByClassName("second")[0].style.transform =  `rotate(${secondturn+secondDeg}turn)`;
+    }
+
+    setInterval(() => {
+      compute();
+    }, 1000);
+
+
+
+  </script>
+</body>
+</html>
